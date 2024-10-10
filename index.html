@@ -98,7 +98,7 @@
                             design.
                         </p>
                         <label class="input input-bordered flex items-center gap-2 w-4/5 rounded-full lg:py-8">
-                            <input id="searchPosts" type="text" class="grow text-black text-lg" placeholder="Search Here Anything..." />
+                            <input onclick="handleSearchByCategory()" id="searchPosts" type="text" class="grow text-black text-lg" placeholder="Search Here Anything..." />
                             <button onclick="handleSearchByCategory()" id="searchPostsBtn"
                                 class="btn rounded-full bg-primary text-white hover:text-primary hover:bg-blue-950">
                                 Search
@@ -139,9 +139,9 @@
             <div class="flex lg:flex-row flex-col gap-8 my-12">
                 <div id="post-container" class="lg:w-8/12 space-y-5">
                     <!-- demo card showing without dynamic value  -->
-                    <div
+                    <!-- <div
                         class=" p-6 lg:p-12 flex flex-col gap-6 lg:flex-row items-center lg:items-start bg-[#F3F3F5] rounded-3xl">
-                        <!-- indicator -->
+
                         <div class="indicator">
                             <span class="indicator-item badge ${isActive? 'bg-green-600': 'bg-red-500'}"></span>
                             <div class="avatar">
@@ -150,7 +150,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--text -->
+
                         <div class="space-y-4 w-full">
                             <div class="font-inter flex gap-4 *:opacity-50">
                                 <p>#category</p>
@@ -183,7 +183,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="flex w-full justify-center">
                         <span id="postLoader" class="loading loading-spinner loading-lg lg:mt-24 text-primary hidden">
                         </span>
