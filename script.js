@@ -1,29 +1,29 @@
 // fetch data:
-const loadAllPosts = async(category)=>{ 
+const loadAllPosts = async (category) => {
 
-    const response = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts${category?`?category=${category}`: ''}`);
+    const response = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts${category ? `?category=${category}` : ''}`);
     const data = await response.json();
     displayAllPosts(data.posts);
 }
 
 
 // load post by category
-const handleSearchByCategory = ()=>{
+const handleSearchByCategory = () => {
     const searchText = document.getElementById('searchPosts').value;
     loadAllPosts(searchText);
 }
 
 // display posts
-const displayAllPosts =(posts)=>{
+const displayAllPosts = (posts) => {
     const postContainer = document.getElementById('post-container');
 
-    postContainer.innerHTML=''
+    postContainer.innerHTML = ''
     posts.forEach(post => {
-            const div = document.createElement('div')
-    div.classList = " p-6 lg:p-12 flex flex-col gap-6 lg:flex-row items-center lg:items-start bg-[#F3F3F5] rounded-3xl";
-    div.innerHTML = `
+        const div = document.createElement('div')
+        div.classList = " p-6 lg:p-12 flex flex-col gap-6 lg:flex-row items-center lg:items-start bg-[#F3F3F5] rounded-3xl";
+        div.innerHTML = `
     <div class="indicator">
-                            <span class="indicator-item badge ${post.isActive? 'bg-green-600': 'bg-red-500'}"></span>
+                            <span class="indicator-item badge ${post.isActive ? 'bg-green-600' : 'bg-red-500'}"></span>
                             <div class="avatar">
                                 <div class="w-24 rounded-xl">
                                     <img src="${post.image}" alt="">
@@ -56,7 +56,7 @@ const displayAllPosts =(posts)=>{
                                     </div>
                                 </div>
                                 <div class="opacity-100">
-                                    <button id="addToList" onclick="markAsRead()" data-post='${JSON.stringify(post)}'
+                                    <button id="addToList" onclick="markAsRead('${post.description}','${post.view_count}')" data-post='${JSON.stringify(post)}'
                                         class="addToList btn btn-circle bg-green-500">
                                         <i class="fa-solid fa-envelope-open text-white"></i>
                                     </button>
@@ -64,9 +64,31 @@ const displayAllPosts =(posts)=>{
                             </div>
                         </div>
     `;
-    postContainer.append(div);
+        postContainer.append(div);
     });
 
 }
+
+// display sidebar:
+const markAsRead = (description, viewCount) => {
+    const markAsReadContainer = document.getElementById('markAsReadContainer');
+    const div = document.createElement('div');
+    div.innerHTML = `
+    <div class="flex justify-between p-2 lg:p-3 bg-white rounded-2xl items-center gap-3 ">
+                                <div class="w-11/12 lg:w-4/5 ">
+                                    <p>${description}</p>
+                                </div>
+                                <div class="w-4/12 lg:w-1/5 flex justify-end">
+                                    <p><i class="fa-regular fa-eye"></i>${viewCount}</p>
+                                </div>
+                            </div>
+    `;
+    markAsReadContainer.append(div);
+
+}
+
+
+
+
 // globally calling function
 loadAllPosts();
