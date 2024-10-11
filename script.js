@@ -84,9 +84,16 @@ const markAsRead = (description, viewCount) => {
                             </div>
     `;
     markAsReadContainer.append(div);
+    handleCount();
+}
+const handleCount=()=>{
+    const markAsReadCounter = document.getElementById('markAsReadCounter');
+    const prevCount = markAsReadCounter.innerText;
+    const convertedCounter = parseInt (prevCount);
+    const sum = convertedCounter + 1;
+    markAsReadCounter.innerText = sum;
 
 }
-
 
 
 
